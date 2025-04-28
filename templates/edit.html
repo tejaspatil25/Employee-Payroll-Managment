@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <style>
+        /* Add your CSS styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f8f6f6;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        input[type="text"], input[type="date"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Employee Details</h1>
+    
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ employee['name'] }}" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male" {% if employee['gender'] == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if employee['gender'] == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Other" {% if employee['gender'] == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" value="{{ employee['dob'] }}" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" value="{{ employee['phone'] }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ employee['email'] }}" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" value="{{ employee['address'] }}" required>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ employee['username'] }}" required>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" name="role" value="{{ employee['role'] }}" required>
+
+        <label for="joining_date">Joining Date:</label>
+        <input type="date" id="joining_date" name="joining_date" value="{{ employee['joining_date'] }}" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+    <main class="main-content">
+            
+        <body style="background-image: url('/static/images/search.png');background-repeat: no-repeat; 
+        background-position: cover ;background-size: cover;">
+
+        </body> 
+         
+       
+    </main>
+</body>
+</html>

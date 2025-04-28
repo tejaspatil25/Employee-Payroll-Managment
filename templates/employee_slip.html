@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Slip</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #347ae3;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .salary-slip {
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .company-info h2 {
+            font-size: 24px;
+            color: #3498db;
+            margin: 0;
+        }
+
+        .company-info p {
+            font-size: 16px;
+            color: #7F8C8D;
+        }
+
+        .employee-details {
+            margin-bottom: 20px;
+        }
+
+        .employee-info h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .employee-info p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #7F8C8D;
+        }
+
+        .salary-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+        }
+
+        td {
+            background-color: #fafafa;
+            font-size: 16px;
+        }
+
+        .total {
+            background-color: #eaf2f8;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .total .highlight {
+            color: #2ECC71;
+            font-size: 20px;
+        }
+
+        .deductions-progress {
+            margin-top: 30px;
+        }
+
+        .progress-bar {
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            height: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .progress {
+            background-color: #e74c3c;
+            border-radius: 10px;
+            height: 10px;
+        }
+
+        .progress-info {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #7F8C8D;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        i {
+            margin-right: 8px;
+        }
+
+        .no-slip {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            background-color: #faf6f6;
+            padding: 10px 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="salary-slip">
+            {% if data %}
+                <div class="header">
+                    <div class="company-logo">
+                        <img src="{{ url_for('static', filename='images/apex.png') }}" alt="Logo" width="300">
+                    </div>
+                    <div class="company-info">
+                        <h2>Apex Hospital</h2>
+                        <p> Address APEX Hospital, Bhadgaon Road, Gadhinglaj, Kolhapur, Maharashtra - 416502.</p>
+                    </div>
+                </div>
+                <div class="employee-details">
+                    <div class="employee-info">
+                        <h3>Employee Salary Slip</h3>
+                        <p><strong>Employee ID:</strong> {{ data.employee_id }}</p>
+                        <p><strong>Name:</strong> {{ data.emp_name }}</p>
+                        <p><strong>Department:</strong> {{ data.department }}</p>
+                        <p><strong>Username:</strong> {{ data.username }}</p>
+                        <p><strong>Date:</strong> {{ data.date }}</p>
+                    </div>
+                </div>
+
+                <div class="salary-details">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Salary Components</th>
+                                <th>Amount (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-money-bill-wave"></i> Basic Salary</td>
+                                <td>{{ data.base_salary }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-money-bill-wave"></i> Per day</td>
+                                <td>{{ data.per_day }}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td><i class="fas fa-money-bill-wave"></i>Total Days Worked</td>
+                                <td>{{ data.totalday }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-money-bill-wave"></i>Day Absent</td>
+                                <td>{{ data.Absent }}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td><i class="fas fa-gift"></i> Bonus</td>
+                                <td>{{ data.bonus }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-heartbeat"></i> Medical Allowance</td>
+                                <td>{{ data.medical }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-car"></i> Conveyance</td>
+                                <td>{{ data.conveyance }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-file-invoice-dollar"></i> Tax Deduction</td>
+                                <td>{{ data.tax }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-file-invoice-dollar"></i> PF</td>
+                                <td>{{ data.pf }}</td>
+                            </tr>
+                            <tr class="total">
+                                <td><strong>Total Payable (Net Pay)</strong></td>
+                                <td><strong class="highlight">{{ data.net_salary }}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="no-slip">
+                    <p>No payroll data found for the selected employee.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="{{url_for('Close')}}" class="btn btn-red">Home🏠</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #005ab4;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select{
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #e33b54;
+        }
+        .Role{
+            width:596px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+    
+        <h2>Register</h2>
+        <form action="/Registration" method="POST">
+            <label for="name">Employee Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+
+            <label for="dob">Date of Birth:</label>
+            <!-- Limit to past dates by setting the max attribute dynamically -->
+            <input type="date" id="dob" name="dob" required>
+    
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <div class="current_date">
+                <label><strong>Current Date:</strong> {{ date }}</label>
+                <input type="hidden" name="current_date" value="{{ date }}">
+            </div>
+
+            <!-- Department -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Employee Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            
+            <div class="Role">
+                <label for="role">Department ID:</label>
+                <select type="text" name="role" id="role" required>
+                    <option value="" disabled selected>Select department ID</option>
+                    {% for department in departments %}
+                        <option value="{{department['name'] }}">{{department['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="register-button">Register</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+        <main class="main-content">
+            
+            <body style="background-image: url('/static/images/register.jpg');background-repeat: no-repeat; 
+            background-position: cover ; background-size: cover;">
+
+            </body> 
+             
+           
+        </main>
+        <script>
+            // Ensure the max date is today's date in YYYY-MM-DD format
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("dob").setAttribute("max", today);
+        </script>
+    </div>
+</body>
+</html>

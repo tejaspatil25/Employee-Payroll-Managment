@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #93e1f4;
+    }
+    input{
+        width: 95%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #93e1f4;
+
+    }
+    label{
+        color: aliceblue;
+        font-size: 18px;
+
+    }
+    
+    button {
+        background-color: #3f39f2;
+        color: white;
+        border: none;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    .current_date{
+        color: aliceblue;
+    }
+    
+    .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            background-color: #faf6f6;
+            padding: 10px 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="add_container">
+        <form action="/add_attendance" method="POST">
+        
+        <label><strong>Username:</strong>{{ employee['username'] }}</label>
+        <br><br>
+        <label><strong>Employee id:</strong>{{ employee['id'] }}</label>
+        <br><br>
+        <label><strong>Name:</strong>{{ employee['name'] }}</label>
+        <br><br>
+        <!-- Current Date -->
+        <div class="current_date">
+            <label><strong>Current Date:</strong> {{ date }}</label>
+            <input type="hidden" name="date" value="{{ date }}">
+        </div>
+        <br>
+
+        <!-- Status Dropdown -->
+        <label for="status">Status</label>
+        <select name="status" required>
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        <br><br>
+
+        <!-- Hidden Field for Date -->
+        <input type="hidden" name="date" value="{{ date }}">
+     
+             
+            <button href="/emp_dashboard" type="submit">Submit Attendance</button>
+            {% with messages = get_flashed_messages(with_categories=True)%}
+            {% if messages %}
+            
+                <ul>
+                {% for category, message in messages %}
+                <li>{{'Mark Attendance successfully!✨'}}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+        </form>
+
+        <main class="main-content">
+            
+            <body style="background-image: url('/static/images/back.png');background-repeat: no-repeat; 
+            background-position: cover ; background-size: cover;">
+
+            </body> 
+
+       
+        </main>
+        
+    </div>
+    <div class="navbar">
+        <a href="{{url_for('Close')}}" class="btn btn-red">Home🏠</a>
+    </div>
+
+</body>
+</html>

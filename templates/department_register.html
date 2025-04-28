@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #4e6ff1;
+        }
+
+        h2 {
+            color: #f8f4f4;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select{
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ce4dae;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #d6e081;
+        }
+        .label{
+            color: #f8f4f4;
+        }
+        .navbar {
+            position: fixed; /* Fix the navbar to stay on the screen even while scrolling */
+            top: 0px; /* Distance from the top */
+            left: 0px; /* Distance from the right corner */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: flex-end; /* Align content to the right */
+            align-items: center; /* Vertically center the content */
+            cursor: pointer;
+            z-index: 1000; /* Make sure it's on top */
+        }
+        .navbar a{
+            background-color: #faf6f6;
+            padding: 10px 15px;
+            color: black;
+        }
+
+        .navbar a:hover {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Department Registration</h2>
+        <form action="/department_register" method="POST">
+            <div class="label">
+                <label for="name">Department Name:</label>
+                <input type="text" id="name" name="name" required><br>
+            </div>
+            <button type="submit">Register</button>
+            
+        </form>
+        <main class="main-content">
+            
+            <body style="background-image: url('/static/images/back.png');background-repeat: no-repeat; 
+            background-position: cover ; background-size: cover;">
+
+            </body> 
+         
+       
+        </main>
+        <div class="navbar">
+            <a href="{{url_for('back')}}" class="btn btn-red">Home🏠</a>
+        </div>
+    </div>
+</body>
+</html>

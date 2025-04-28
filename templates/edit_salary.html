@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee salary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit salary Details</h1>
+        <form method="POST">
+            <!-- Employee ID (Hidden) -->
+            <input type="hidden" name="employee_id" value="{{ salary['employee_id'] }}">
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" name="department" value="{{ salary['department'] }}" required>
+            </div>
+
+            <!-- Employee Name -->
+            <div class="form-group">
+                <label for="emp_name">Employee Name</label>
+                <input type="text" id="emp_name" name="emp_name" value="{{ salary['emp_name'] }}" required>
+            </div>
+
+            <!-- Base Salary -->
+            <div class="form-group">
+                <label for="base_salary">Base salary</label>
+                <input type="number" id="base_salary" name="base_salary" value="{{ salary['base_salary'] }}" required>
+            </div>
+
+            <!-- Bonus -->
+            <div class="form-group">
+                <label for="bonus">Bonus</label>
+                <input type="number" id="bonus" name="bonus" value="{{ salary['bonus'] }}" required>
+            </div>
+
+            <!-- Medical -->
+            <div class="form-group">
+                <label for="medical">Medical</label>
+                <input type="number" id="medical" name="medical" value="{{ salary['medical'] }}" required>
+            </div>
+
+            <!-- Conveyance -->
+            <div class="form-group">
+                <label for="conveyance">Conveyance</label>
+                <input type="number" id="conveyance" name="conveyance" value="{{ salary['conveyance'] }}" required>
+            </div>
+
+            <!-- PF -->
+            <div class="form-group">
+                <label for="pf">Provident Fund (PF)</label>
+                <input type="number" id="pf" name="pf" value="{{ salary['pf'] }}" required>
+            </div>
+
+            <!-- Tax -->
+            <div class="form-group">
+                <label for="tax">Tax</label>
+                <input type="number" id="tax" name="tax" value="{{ salary['tax'] }}" required>
+            </div>
+
+            <!-- Net Salary -->
+            <div class="form-group">
+                <label for="net_salary">Net salary</label>
+                <input type="number" id="net_salary" name="net_salary" value="{{ salary['net_salary'] }}" required>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+                <label for="date">Salary Date</label>
+                <input type="date" id="date" name="date" value="{{ salary['date'] }}" required>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="{{ salary['username'] }}" required>
+            </div>
+
+            <!-- Total Days -->
+            <div class="form-group">
+                <label for="totalday">Total Days Worked</label>
+                <input type="number" id="totalday" name="totalday" value="{{ salary['totalday'] }}" required>
+            </div>
+
+            <!-- Absent Days -->
+            <div class="form-group">
+                <label for="Absent">Absent Days</label>
+                <input type="number" id="Absent" name="Absent" value="{{ salary['Absent'] }}" required>
+            </div>
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="submit" value="Update salary">
+            </div>
+        </form>
+        
+        <!-- Back Button -->
+        <a href="{{ url_for('salary_list') }}" class="back-btn">Back to salary List</a>
+    </div>
+    <main class="main-content">
+            
+        <body style="background-image: url('/static/images/search.png');background-repeat: no-repeat; 
+        background-position: cover ;background-size: cover;">
+
+        </body> 
+         
+       
+    </main>
+</body>
+</html>

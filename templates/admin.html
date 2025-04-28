@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title> 
+    <style>
+        body {
+            
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            font-family: Arial, sans-serif;
+            
+        }
+        .title{
+            font-size: medium;
+            text-align: center;
+        }
+
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: #121212;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .sidebar-header h1{
+            color: rgb(20, 20, 20);
+            font-size: 16px;
+            background-color: rgb(194, 238, 151);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            
+            padding: 10px 20px;
+        }
+
+        .sidebar-menu li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .sidebar-menu li a:hover {
+            
+            background-color: #33334d;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            
+            
+        }
+
+        .buttons{
+            position: absolute;
+            bottom: 2%;
+            padding: 5px 10px;
+            background-color: #ededf5;
+            color: rgb(234, 242, 242);
+            
+        }
+    </style>
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🧑‍⚕️Employee Payroll System💸</h1>
+                <h3>🛡️Admin</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('search') }}">Employee Salary Slip</a></li>
+                <br>
+                <li><a href="{{ url_for('payroll') }}">Payroll Calculation </a></li>
+                <br>
+                <li><a href="{{ url_for('salary_list') }}">Salary List </a></li>
+                <br>
+                <li><a href="{{ url_for('department_register') }}">Department Register </a></li>
+                <br>
+                <li><a href="{{ url_for('reports') }}">Reports</a></li>
+                <br>
+                
+                
+            </ul>
+            <div class="buttons">
+                <a  href="{{url_for('logout')}}" class="btn btn-danger" >Logout </a>
+                    
+            </div>
+            
+        </aside>
+        <main class="main-content">
+            
+                <body style="background-image: url('/static/images/admin.jpg');background-repeat: no-repeat; 
+                 background-position: center ; background-size: cover;">
+
+                </body> 
+                 
+                
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee Dashboard</title>
+    <style>
+        /* Basic reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e3d58;
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #3d5a6c;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main container */
+        .container {
+            display: flex;
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: calc(100vh - 70px);
+            margin-top: 20px;
+            margin: 0 15px;
+            padding: 20px;
+        }
+
+        /* Main content area */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        /* Left Section for Profile */
+        .profile-section {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Right Section for Payslip */
+        .payslip-section {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .payslip-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Profile Section */
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .profile-details p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            flex: 1 1 calc(50% - 10px); /* Make the content side by side */
+        }
+
+        .profile-details strong {
+            color: #1e3d58;
+            font-weight: bold;
+        }
+
+        .profile-details span {
+            color: #4a90e2;
+            font-weight: 500;
+        }
+
+        /* Heading Styling */
+        h1 {
+            color: #1e3d58;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #1e3d58;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        /* Print Button Styling */
+        .print-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .print-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* No Payslip Message */
+        .no-payslip-message {
+            color: #e74c3c;
+            font-size: 1.25rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .container {
+                margin: 0 5px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .navbar a {
+                padding: 10px;
+                margin: 5px;
+            }
+
+            .logout-btn {
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            .profile-details p {
+                flex: 1 1 100%; /* On smaller screens, make content stack vertically */
+            }
+        }
+        .action-btn {
+            color: white;
+            padding: 10px 15px;  /* Increase padding for a larger button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.25rem;  /* Increase font size for better readability */
+            width: 120px;  /* Set a larger fixed width for all buttons */
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Hover Effects */
+        .action-btn:hover {
+            transform: scale(1.1); /* Slightly enlarge the button more on hover */
+        }
+
+        /* Edit Button Styling */
+        .edit-btn {
+            width: 120px;  /* Increase width for Edit button */
+            background-color: #359193;
+            font-size: 1.25rem; /* Increase font size */
+            padding: 8px 15px; /* Increase padding for larger size */
+        }
+
+        .edit-btn:hover {
+            background-color: #2c7b72;  /* Slightly darker color on hover for better contrast */
+        }
+
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <!-- Top Navigation Bar -->
+    <div class="navbar">
+        <div class="navbar-links">
+            <a href="{{ url_for('add_attendance') }}">Mark Attendance</a>
+            <a href="{{ url_for('employee_slip') }}">Salary Slip</a>
+            <a href="{{ url_for('Feedback') }}">Feedback</a>
+        </div>
+        <!-- Logout Button -->
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="container">
+        <!-- Main Content Area (employee Profile + Payslip) -->
+        <div class="main-content">
+            <!-- Left Section for Profile -->
+            <div class="profile-section">
+                <h1>Welcome, {{ employee['name'] }}!</h1>
+                <h2>employee Details</h2>
+                <div class="profile-details">
+                    <p><strong>Username:</strong> <span>{{ employee['username'] }}</span></p>
+                    <p><strong>Email:</strong> <span>{{ employee['email'] }}</span></p>
+                    <p><strong>Role:</strong> <span>{{ employee['role'] }}</span></p>
+                    <p><strong>Gender:</strong> <span>{{ employee['gender'] }}</span></p>
+                    <p><strong>DOB:</strong> <span>{{ employee['dob'] }}</span></p>
+                    <p><strong>Address:</strong> <span>{{ employee['address'] }}</span></p>
+                    <p><strong>Phone NO:</strong> <span>{{ employee['phone'] }}</span></p>
+                    <p><strong>Joining Date:</strong> <span>{{ employee['joining_date'] }}</span></p>
+                    <p><strong>employee Password:</strong> <span>{{ employee['password'] }}</span></p>
+                    <a class="action-btn edit-btn" href="{{ url_for('edit', employee_id=employee['id']) }}">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

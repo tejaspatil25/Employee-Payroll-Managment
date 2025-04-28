@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+/* Container for the search form */
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+/* Input field styling */
+        input[type="text"] {
+            width: calc(100% - 22px);  /* Makes input fit within the form */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+/* Search button styling */
+        button[type="submit"] {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+/* Hover effect for the search button */
+        button[type="submit"]:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-2px);
+        }
+
+/* Message styles when employee is not found */
+        p {
+            font-size: 18px;
+            color: rgb(249, 244, 244);
+            text-align: center;
+            font-weight: bold;
+        }
+        h1{
+            margin-bottom: 22px;
+            font-size: 26px;
+            color: #f8f7f7;
+            text-align: center;
+        }
+        .message{
+            text-align: center;
+            color: #f8f7f7;
+            font-size: 22px;
+
+        }
+        .btn-red {
+            padding: 10px 15px;
+        }
+        .navbar {
+            position: fixed; /* Fix the navbar to stay on the screen even while scrolling */
+            top: 0px; /* Distance from the top */
+            left: 0px; /* Distance from the right corner */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: flex-end; /* Align content to the right */
+            align-items: center; /* Vertically center the content */
+            cursor: pointer;
+            z-index: 1000; /* Make sure it's on top */
+        }
+        .navbar a{
+            background-color: #faf6f6;
+            padding: 10px 15px;
+            color: black;
+        }
+    </style>
+    <title>Employee Salary Search</title>
+</head>
+<body>
+    <h1>Search Employee</h1>
+    <form action="/search" method="POST">
+        <label for="employee_id">Employee ID:</label>
+        <input type="number" name="employee_id" id="employee_id" required>
+        <button type="submit">Search</button>
+    </form>
+    <main class="main-content">
+            
+        <body style="background-image: url('/static/images/search.png');background-repeat: no-repeat; 
+        background-position: cover ;background-size: cover;">
+
+        </body> 
+         
+       
+    </main>
+    <div class="navbar">
+        <a href="{{url_for('back')}}" class="btn btn-red">Home🏠</a>
+    </div>
+    <div class = "message">
+        {% with messages = get_flashed_messages(with_categories=True)%}
+        {% if messages %}
+        
+            <ul>
+              {% for category, message in messages %}
+              <li>{{"Employee not found."}}</li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}   
+    </div>
+</body>
+</html>

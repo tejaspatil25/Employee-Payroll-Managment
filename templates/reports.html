@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #6A1B9A;
+            padding: 10px;
+            overflow: hidden;
+        }
+        .navbar a {
+            color: rgb(18, 17, 17);
+            text-decoration: none;
+            padding: 10px 15px;
+            float: left;
+        }
+        .container {
+            text-align: center;
+            margin-top: 150px;
+        }
+        .container h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-purple {
+            background-color: #b539eb;
+        }
+        .btn-green {
+            background-color: #43A047;
+        }
+        .btn-red {
+            background-color: #E53935;
+        }
+        .btn-blue{
+            background-color: blue;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn-nevyblue{
+            background-color: azure;
+        }
+        h1 {
+            text-align: right; /* Align text to the right */
+            font-family: 'Arial', sans-serif;
+            font-size: 29px;
+            font-weight: bold;
+            color: #f7f7f5;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            padding: 10px 0;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+            margin-top: 0px;
+            margin-right: 550px; /* Add 20px margin on the right */
+        }
+
+        h1:hover {
+            transform: scale(1.1); /* Slightly enlarge text on hover */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{url_for('back')}}" class="btn btn-nevyblue">Home🏠</a>
+        
+    </div>
+    <h1>Employee Payroll System</h1>
+    <div class="container">
+        
+        <h2>Report</h2><br>
+        
+            <a href="/all_employee" class="btn btn-purple">Register</a>
+            <a href="/attendance_table" class="btn btn-green">Attendance</a>
+            <a href="/feedback_tabel" class="btn btn-red">Feedback</a>
+            <a href="department_List" class="btn btn-blue">Department</a>
+        
+    </div>
+    <main class="main-content">
+            
+        <body style="background-image: url('/static/images/report.png');background-repeat: no-repeat; 
+        background-position: cover;background-size: cover;">
+
+        </body> 
+         
+       
+    </main>
+</body>
+</html>

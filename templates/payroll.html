@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container, .form-container {
+        width: 40%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+    
+    .add-btn {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+    
+    .add-btn:hover {
+        background-color: #0056b3;
+    }
+    
+    form label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+    
+    form input {
+        width: 96%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #e8e4aa;
+        border-radius: 4px;
+    }
+    
+    form button {
+        width: 20%;
+        padding: 10px;
+        background-color: #f50d05;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+    }
+    
+    form button:hover {
+        background-color: #218838;
+    }
+    .presnty{
+        display:flex;
+        gap: 10px;
+        padding: 5px 10px;
+        color: rgb(19, 18, 18);
+        border-radius: 5px;
+    }
+    .navbar {
+        position: fixed; /* Fix the navbar to stay on the screen even while scrolling */
+        top: 0px; /* Distance from the top */
+        left: 0px; /* Distance from the right corner */
+        display: flex; /* Use flexbox for alignment */
+        justify-content: flex-end; /* Align content to the right */
+        align-items: center; /* Vertically center the content */
+        cursor: pointer;
+        z-index: 1000; /* Make sure it's on top */
+    }
+    .navbar a{
+        background-color: #faf6f6;
+        padding: 10px 15px;
+    }
+    .option{
+        width: 98%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #e8e4aa;
+        border-radius: 4px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Net Salary Calculator</h1>
+        <form method="POST">
+            <div class="label-container">
+                <label for="employee_id">Employee ID:</label>
+                <select name="employee_id" class="option" id="employee_id" required>
+                    <option value="" disabled selected>Select Employee ID</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee['id'] }} ">{{ employee['id'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="department">Department ID:</label>
+                <select name="department" class="option" id="department" required>
+                    <option value="" disabled selected>Select department ID</option>
+                    {% for department in departments %}
+                        <option value="{{department['name'] }}">{{department['name'] }}</option>
+                    {% endfor %}
+                </select>
+                <label for="emp_name">Employee name:</label>
+                <select name="emp_name" class="option" id="emp_name" required>
+                    <option value="" disabled selected>Employee name:</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee['name'] }} ">{{ employee['id'] }} {{ employee['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="presnty">
+                <label for="totalday">Total Day:</label>
+                <input type="totalday" id="totalday" name="totalday" value="26" required><br>
+
+                <label for="Absent">Absent:</label>
+                <input type="Absent" id="Absent" name="Absent"  value="0" required><br>
+            </div>
+            
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" required><br>
+
+            <div class="current_date">
+                <label><strong>Current Date:</strong> {{ date }}</label>
+                <input type="hidden" name="date" value="{{ date }}">
+            </div>
+
+            <label for="base_salary">Base Salary:</label>
+            <input type="number" id="base_salary" name="base_salary" step="0.01" required>
+            
+            <label for="bonus">Bonus:</label>
+            <input type="number" id="bonus" name="bonus" step="0.01" required>
+            
+            <label for="medical">Medical:</label>
+            <input type="number" id="medical" name="medical" step="0.01" required>
+            
+            <label for="conveyance">Conveyance:</label>
+            <input type="number" id="conveyance" name="conveyance" step="0.01" required>
+
+            <label for="pf">PF:</label>
+            <input type="number" id="pf" name="pf" step="0.01" required>
+            
+            <label for="tax">Tax:</label>
+            <input type="number" id="tax" name="tax" step="0.01" required>
+            
+            <button type="submit">Calculate</button>
+            <main class="main-content">
+            
+                <body style="background-image: url('/static/images/calculation.jpg');background-repeat: no-repeat; 
+                background-position: center ;background-size: cover;">
+    
+                </body> 
+                 
+               
+            </main>
+            <div class="navbar">
+                <a href="{{url_for('back')}}" class="btn btn-red">Home🏠</a>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <h2>{{ messages[0] }}</h2>
+            {% endif %}
+        {% endwith %}
+    
+    </div>
+</body>
+</html>
